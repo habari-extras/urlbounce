@@ -14,7 +14,7 @@ class URLBounce extends Plugin
 			'author' => 'Bob Clough',
 			'authorurl' => 'http://thinkl33t.co.uk',
 			'license' => 'Apache License 2.0',
-			'description' => 'Allow usert to set up URL bouncers, to forward local URLs on to remote URLs'
+			'description' => 'Allow user to set up URL bouncers, to forward local URLs on to remote URLs'
 		);
 	}
 
