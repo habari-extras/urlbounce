@@ -5,19 +5,6 @@
 
 class URLBounce extends Plugin
 {
-	function info()
-	{
-		return array(
-			'name' => 'URL Bouncer',
-			'version' => '0.2',
-			'url' => 'http://hacman.org.uk/urlbounce',
-			'author' => 'Bob Clough',
-			'authorurl' => 'http://thinkl33t.co.uk',
-			'license' => 'Apache License 2.0',
-			'description' => 'Allow user to set up URL bouncers, to forward local URLs on to remote URLs'
-		);
-	}
-
 	/**
 	 * Add update beacon support
 	 **/
@@ -53,8 +40,9 @@ class URLBounce extends Plugin
 		if ($form->content_type->value == Post::type('urlbounce')) 
 		{
 		        //add URL field
-		        $form->insert('silos', 'text', 'url', 'null:null', _t('External URL'), 'admincontrol_text');
+		        $form->insert('content', 'text', 'url', 'null:null', _t('External URL'), 'admincontrol_text');
 		        $form->url->value = $post->info->url;
+		        $form->url->tabindex = 2;
 		        
 		        //disable comments by default
 		        $form->settings->comments_enabled->value = false;
@@ -63,7 +51,7 @@ class URLBounce extends Plugin
 		        $form->tags->template = 'hidden';
 
 		        //remove silos
-		        $form->silos->remove();
+		        if ($form->silos) $form->silos->remove();
 
 		        //modify content to be hidden - it cant be done the same way as tags, form becomes unsubmittable
 		        $form->content->template = 'admincontrol_text';
